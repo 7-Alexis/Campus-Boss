@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1020">
+<title>Campus Boss Pro — Espace étudiant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="loginScreen" class="login-screen">
+  <div class="login-card">
+    <div class="brand"><span>CB</span><b>Campus Boss</b></div>
+    <div class="login-copy"><small>ESPACE ÉTUDIANT</small><h1>Travaille.<br><em>Progresse.</em> Réussis.</h1><p>Ton espace personnel pour organiser tes études, apprendre et suivre ta progression.</p></div>
+    <form id="loginForm">
+      <label>Nom complet<input id="loginName" required placeholder="Ex. Alexis Nikiema"></label>
+      <label>Filière
+        <select id="loginFiliere" required>
+          <option value="">Choisir une filière</option><option>Mathématiques & Informatique</option><option>Informatique</option><option>Économie & Gestion</option><option>Droit</option><option>Médecine</option><option>Sciences</option><option>Lettres & Langues</option>
+        </select>
+      </label>
+      <label>Mot de passe<input id="loginPass" type="password" required minlength="4" placeholder="••••••••"></label>
+      <button class="btn primary full">Accéder à mon espace →</button>
+    </form>
+    <p class="demo-note">Mode démonstration : les données sont enregistrées uniquement dans ce navigateur.</p>
+  </div>
+  <div class="login-art"><div class="orb"></div><div class="quote-card">🎓<strong>Une petite progression<br>chaque jour devient<br>un grand résultat.</strong><small>Campus Boss Pro</small></div></div>
+</div>
+
+<div id="app" class="app hidden">
+<aside class="sidebar">
+  <div class="brand"><span>CB</span><b>Campus Boss</b></div>
+  <div class="student-mini"><div id="avatar">A</div><div><b id="sideName">Étudiant</b><small id="sideFiliere">Filière</small></div></div>
+  <nav>
+    <button class="nav active" data-page="dashboard">⌂ <span>Tableau de bord</span></button>
+    <button class="nav" data-page="methodes">◈ <span>Méthodes</span></button>
+    <button class="nav" data-page="filieres">▦ <span>Ma filière</span></button>
+    <button class="nav" data-page="documents">▤ <span>Espace PDF</span></button>
+    <button class="nav" data-page="quiz">✓ <span>Quiz</span></button>
+    <button class="nav" data-page="progression">↗ <span>Progression</span></button>
+  </nav>
+  <div class="side-bottom"><button id="theme">☾ <span>Mode sombre</span></button><button id="logout">↪ <span>Déconnexion</span></button></div>
+</aside>
+
+<main class="main">
+<header class="topbar"><button id="mobileMenu" class="mobile-menu">☰</button><div><small id="welcomeLabel">BONJOUR</small><h2 id="pageTitle">Tableau de bord</h2></div><div class="top-actions"><button id="notification" class="round">♢</button><div class="top-avatar" id="topAvatar">A</div></div></header>
+
+<section id="dashboard" class="page active">
+  <div class="welcome"><div><small>TON ESPACE PERSONNEL</small><h1>Bonjour, <span id="dashName">Étudiant</span> 👋</h1><p>Voici ton résumé. Continue tes efforts et garde le rythme.</p></div><div class="level"><span>NIVEAU</span><b id="level">1</b></div></div>
+  <div class="stats">
+    <div class="stat"><span>📚</span><small>COURS ÉTUDIÉS</small><b id="statCourses">0</b><em>Cette session</em></div>
+    <div class="stat"><span>✓</span><small>QUIZ TERMINÉS</small><b id="statQuiz">0</b><em id="quizScore">0% de réussite</em></div>
+    <div class="stat"><span>⚡</span><small>POINTS XP</small><b id="statXP">0</b><em>Continue à progresser</em></div>
+    <div class="stat"><span>🔥</span><small>SÉRIE</small><b id="streak">1 jour</b><em>Objectif : 7 jours</em></div>
+  </div>
+  <div class="dash-grid">
+    <div class="panel">
+      <div class="panel-head"><div><small>À FAIRE</small><h3>Ma prochaine session</h3></div><button class="text-btn" data-go="progression">Voir tout →</button></div>
+      <form id="taskForm" class="task-form"><input id="taskInput" placeholder="Ajouter une tâche..." required><button>+</button></form>
+      <div id="tasks"></div>
+    </div>
+    <div class="panel progress-panel">
+      <div class="panel-head"><div><small>PROGRESSION</small><h3>Cette semaine</h3></div></div>
+      <div class="ring" id="ring"><div><b id="ringValue">0%</b><small>objectif</small></div></div>
+      <p class="center muted">Complète tes tâches et quiz pour faire monter ta progression.</p>
+    </div>
+  </div>
+</section>
+
+<section id="methodes" class="page"><div class="page-intro"><small>MÉTHODES</small><h1>Travaille comme un Boss.</h1><p>Des techniques concrètes pour apprendre plus vite et retenir plus longtemps.</p></div><div class="method-grid" id="methodGrid"></div></section>
+
+<section id="filieres" class="page"><div class="page-intro"><small>FILIÈRE</small><h1 id="filiereTitle">Ma filière</h1><p id="filiereDesc">Des ressources adaptées à ton parcours.</p></div><div class="course-grid" id="courseGrid"></div></section>
+
+<section id="documents" class="page"><div class="page-intro"><small>RESSOURCES</small><h1>Espace PDF.</h1><p>Centralise tes fiches, cours et sujets d'examen.</p></div><div class="upload-box"><div class="upload-icon">↑</div><h3>Ajouter un document</h3><p>Sélectionne un PDF depuis ton téléphone ou ton ordinateur.</p><input type="file" id="fileInput" accept=".pdf,application/pdf"><label for="fileInput" class="btn secondary">Choisir un PDF</label></div><div class="doc-grid" id="docGrid"></div></section>
+
+<section id="quiz" class="page"><div class="page-intro"><small>ENTRAÎNEMENT</small><h1>Teste tes connaissances.</h1><p>Réponds aux questions et gagne de l'XP.</p></div><div id="quizArea"></div></section>
+
+<section id="progression" class="page"><div class="page-intro"><small>STATISTIQUES</small><h1>Ta progression.</h1><p>Visualise tes habitudes et fixe ton prochain objectif.</p></div><div class="progress-layout"><div class="panel big-progress"><h3>Progression globale</h3><div class="big-ring" id="bigRing"><b id="bigRingValue">0%</b></div><div class="bar"><span id="bigBar"></span></div><p id="xpText" class="muted"></p></div><div class="panel"><h3>Objectifs</h3><div id="goals"></div></div></div><div class="panel"><h3>Historique des quiz</h3><div id="history"></div></div></section>
+
+<footer>Campus Boss Pro • Espace étudiant</footer>
+</main>
+</div>
+<div id="toast"></div>
+<div id="modal" class="modal"><div class="modal-card"><button class="close" id="close">×</button><div id="modalContent"></div></div></div>
+<script src="script.js"></script>
+</body>
+</html>
